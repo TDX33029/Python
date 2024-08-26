@@ -1,0 +1,64 @@
+#-*-coding:GBK -*-
+#function of clear
+def cls():
+    os.system("cls")
+
+#Ingest the runtime
+
+import os
+import time
+import numpy
+
+#Define the initialization value
+
+NumberOfEndSignal=0
+NumberOfInputCheck=0
+NumberOfCirculate1=1
+sequence = numpy.arange(101)
+for ii in range(0,101):
+    sequence[ii]=1
+
+#output the signal of initialization ready
+
+print("Setup is done")
+
+while(NumberOfEndSignal==0):
+   
+    cls()
+    #Verify the validity of the input
+    while(NumberOfInputCheck==0):
+        print('input the ' + str(NumberOfCirculate1) + ' word by keybroad,end with 0')
+        input1=input()
+        if(str.isdigit(input1)==True):
+            sequence[NumberOfCirculate1]=input1
+            input1=0
+            if(NumberOfCirculate1==1 and sequence[NumberOfCirculate1]!=0):               
+                NumberOfInputCheck=1
+            elif(NumberOfCirculate1==1 and sequence[NumberOfCirculate1]==0):                
+                print("The list should have something instead of empty")
+                NumberOfInputCheck=0
+                time.sleep(1)
+            else:              
+                NumberOfInputCheck=1
+            cls()
+        else:
+            NumberOfInputCheck=0
+            print("unvalidity of the input,retry")
+            time.sleep(1)
+            cls()
+    cls()
+    if(sequence[NumberOfCirculate1]==0):
+        NumberOfEndSignal=1
+    else:
+        NumberOfCirculate1+=1
+        NumberOfEndSignal=0
+
+    if(NumberOfCirculate1==101):
+        NumberOfEndSignal=1
+        print("The input list is up the most")
+    NumberOfInputCheck=0
+
+CheckID=365
+
+if CheckID in sequence:
+    print("666这个入是挂")
